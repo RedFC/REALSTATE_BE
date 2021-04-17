@@ -1,0 +1,28 @@
+{
+    "origin": "http://givees-staging.herokuapp.com",
+    "Email_env": {
+        "service": "gmail",
+        "email": "websiteforex8@gmail.com",
+        "password": "ITSol@2020"
+    },
+    "Default_password":{
+        "password" : "forex@2021@finance"
+    },
+    "dbConfig":  {
+        "host": "localhost",
+        "USER": "root",
+        "PASSWORD": "",
+        "DB": "realstate_be_dev"
+    },
+    "cloudinaryConfig": {
+        "cloud_name": "",
+        "api_key": "",
+        "api_secret": ""
+    },
+    "twilio" : {
+        "Account_SID" : "",
+        "Account_TOKEN" : "",
+        "Number" : "",
+        "serviceId" : ""
+    }
+}

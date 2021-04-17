@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../layouts/head'); %>
+</head>
+
+<body class="container" style="background-color: #000;">
+    <!-- <header>
+     <%- include('../layouts/header'); %>
+ </header> -->
+    <style>
+        /*======================
+    404 page
+=======================*/
+
+
+        .page_404 {
+            padding: 40px 0;
+            background: #000;
+        }
+
+        .page_404 img {
+            width: 100%;
+        }
+
+        .four_zero_four_bg {
+
+            background-image: url("/resources-images/404.gif");
+            height: 400px;
+            background-position: center;
+        }
+
+        .h2{
+            font-size: 40px;
+            color: #fff !important;
+        }
+        p{
+            font-size: 20px;
+            color: #fff !important;
+        }
+
+        .link_404 {
+            color: rgb(223, 0, 0) !important;
+            font-weight: bold;
+            padding: 10px 20px;
+            background: #fff;
+            margin: 20px 0;
+            display: inline-block;
+        }
+
+        .contant_box_404 {
+            margin-top: -50px;
+        }
+    </style>
+
+    <main>
+        <section class="page_404">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12 ">
+                        <div class="col-sm-12 col-sm-offset-1  text-center">
+                            <div class="four_zero_four_bg">
+
+
+                            </div>
+
+                            <div class="contant_box_404">
+                                <h3 class="h2">
+                                    Looks like you're lost!
+                                </h3>
+
+                                <p class="text-uppercase">the page you are looking for is not available!</p>
+
+                                <a href="/" class="link_404">Go to Home</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer><%- include('../layouts/footer'); %></footer>
+</body>
+
+</html>

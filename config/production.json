@@ -1,0 +1,26 @@
+{
+    "DB": "mongodb://localhost/Divis",
+    "origin": "https://givees.herokuapp.com",
+    "Email_env": {
+        "service": "gmail",
+        "email": "giveesapp@gmail.com",
+        "password": "jraowrqtnocdngpe"
+    },
+    "dbConfig":{
+        "host": "34.66.229.183",
+        "USER": "givees",
+        "PASSWORD": "givees_app_password",
+        "DB": "givees"
+    },
+    "cloudinaryConfig": {
+        "cloud_name": "dpc1ztgte",
+        "api_key": "259772526299174",
+        "api_secret": "0eYRtPEsTqHm2dVr8VhhZHzbRLw"
+    },
+    "twilio" : {
+        "Account_SID" : "ACa6a8be4f579169faa23d04c5803892ee",
+        "Account_TOKEN" : "e96202c84d9d2f348e34dcb6ecf85008",
+        "Number" : "+16476993211",
+        "serviceId" : "VAcb7bb8e2dae71706a5ddc85f788070ee"
+    }
+}
