@@ -49,6 +49,21 @@ function permissions(sequelize, Sequelize) {
     canBlockUser: {
       type: Sequelize.BOOLEAN
     },
+    canCreateMember: {
+      type: Sequelize.BOOLEAN
+    },
+  canReadMember: {
+      type: Sequelize.BOOLEAN
+    },
+  canUpdateMember: {
+      type: Sequelize.BOOLEAN
+    },
+  canDeleteMember: {
+      type: Sequelize.BOOLEAN
+    },
+  canBlockMember: {
+      type: Sequelize.BOOLEAN
+    },
   });
 
   return permission;

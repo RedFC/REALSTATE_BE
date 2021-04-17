@@ -12,7 +12,8 @@ const bcrypt = require("bcrypt");
 const {
   adminPermission,
   superAdminPermission,
-  UserPermission
+  UserPermission,
+  MemberPermission
 } = require("../extras/Permission");
 const valideRole = require("../extras/validateWithRole");
 const fs = require("fs");
@@ -98,7 +99,9 @@ class SuperAdmin {
         permissionDefine = adminPermission;
       } else if (roleMember.roleName == "Super Admin") {
         permissionDefine = superAdminPermission;
-      } else {
+      }  else if (roleMember.roleName == "Member") {
+        permissionDefine = MemberPermission;
+      }else {
         res.status(500).send({
           message: "Role Does not exist"
         });
@@ -187,7 +190,17 @@ class SuperAdmin {
             res
           }),
         });
-      } else {
+      } else if (roleMember.roleName == "Member") {
+        validatePermissionGetAccess({
+          permissionIs: getPermission.canCreateMember,
+          req,
+          res,
+          _func: this.createMember({
+            req,
+            res
+          }),
+        });
+      }else {
         res.status(500).send({
           message: "Role Not Found"
         });

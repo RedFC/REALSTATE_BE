@@ -10,6 +10,11 @@ exports.superAdminPermission = {
   canUpdateUser: true,
   canDeleteUser: true,
   canBlockUser: true,
+  canCreateMember: true,
+  canReadMember: true,
+  canUpdateMember: true,
+  canDeleteMember: true,
+  canBlockMember: true,
 };
 
 exports.adminPermission = {
@@ -24,7 +29,31 @@ exports.adminPermission = {
   canUpdateUser: false,
   canDeleteUser: false,
   canBlockUser: false,
+  canCreateMember: false,
+  canReadMember: false,
+  canUpdateMember: false,
+  canDeleteMember: false,
+  canBlockMember: false,
 };
+
+exports.MemberPermission = {
+  canCreateAdmin: false,
+  canReadAdmin: false,
+  canUpdateAdmin: false,
+  canDeleteAdmin: false,
+  canBlockAdmin: false,
+  canUpdatePermissions: false,
+  canCreateUser: false,
+  canReadUser: false,
+  canUpdateUser: false,
+  canDeleteUser: false,
+  canBlockUser: false,
+  canCreateMember: false,
+  canReadMember: false,
+  canUpdateMember: false,
+  canDeleteMember: false,
+  canBlockMember: false,
+}
 
 exports.UserPermission = {
   canCreateAdmin: false,
@@ -38,4 +67,9 @@ exports.UserPermission = {
   canUpdateUser: false,
   canDeleteUser: false,
   canBlockUser: false,
+  canCreateMember: false,
+  canReadMember: false,
+  canUpdateMember: false,
+  canDeleteMember: false,
+  canBlockMember: false,
 }

@@ -10,11 +10,8 @@ const { CategoryModel } = require("./category.model");
 const { SubCategoryModel } = require("./subCategory.model");
 const { Terms } = require("./termsCondition.model");
 const { About } = require("./aboutUs.model");
-const { Supportmodel } = require("./support.model");
-const { FAQS } = require("./faqs.model");
 const { ImageData } = require("./imageData.model");
 const { exceptionModel } = require("./exception.model");
-const { Sliderdata } = require("./slider.model");
 
 const Sequelize = require("sequelize");
 const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
@@ -45,11 +42,8 @@ db.category = CategoryModel(sequelize, Sequelize);
 db.SubCategory = SubCategoryModel(sequelize, Sequelize);
 db.termsCondition = Terms(sequelize, Sequelize);
 db.aboutUs = About(sequelize, Sequelize);
-db.Supportmodel = Supportmodel(sequelize, Sequelize);
-db.Faqs = FAQS(sequelize, Sequelize);
 db.imageData = ImageData(sequelize, Sequelize);
 db.exceptionModel = exceptionModel(sequelize, Sequelize);
-db.Sliderdata = Sliderdata(sequelize, Sequelize);
 
 db.users.hasMany(db.permissions);
 db.users.hasMany(db.usersdetail);

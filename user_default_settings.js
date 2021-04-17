@@ -34,6 +34,17 @@ exports.default_settings = () => {
 
             role = await db.roles.findOne({
                 where: {
+                    roleName: "Member"
+                }
+            });
+            if (!role) {
+                await db.roles.create({
+                    roleName: "Member",
+                });
+            };
+
+            role = await db.roles.findOne({
+                where: {
                     roleName: "User"
                 }
             });
