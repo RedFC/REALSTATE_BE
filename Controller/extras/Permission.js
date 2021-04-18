@@ -15,6 +15,14 @@ exports.superAdminPermission = {
   canUpdateMember: true,
   canDeleteMember: true,
   canBlockMember: true,
+  canCreateProperty: true,
+  canReadProperty: true,
+  canUpdateProperty: true,
+  canDeleteProperty: true,
+  canCreateApartment: true,
+  canReadApartment: true,
+  canUpdateApartment: true,
+  canDeleteApartment: true,
 };
 
 exports.adminPermission = {
@@ -34,6 +42,14 @@ exports.adminPermission = {
   canUpdateMember: false,
   canDeleteMember: false,
   canBlockMember: false,
+  canCreateProperty: false,
+  canReadProperty: false,
+  canUpdateProperty: false,
+  canDeleteProperty: false,
+  canCreateApartment: false,
+  canReadApartment: false,
+  canUpdateApartment: false,
+  canDeleteApartment: false,
 };
 
 exports.MemberPermission = {
@@ -53,6 +69,14 @@ exports.MemberPermission = {
   canUpdateMember: false,
   canDeleteMember: false,
   canBlockMember: false,
+  canCreateProperty: false,
+  canReadProperty: false,
+  canUpdateProperty: false,
+  canDeleteProperty: false,
+  canCreateApartment: false,
+  canReadApartment: false,
+  canUpdateApartment: false,
+  canDeleteApartment: false,
 }
 
 exports.UserPermission = {
@@ -72,4 +96,12 @@ exports.UserPermission = {
   canUpdateMember: false,
   canDeleteMember: false,
   canBlockMember: false,
+  canCreateProperty: false,
+  canReadProperty: false,
+  canUpdateProperty: false,
+  canDeleteProperty: false,
+  canCreateApartment: false,
+  canReadApartment: false,
+  canUpdateApartment: false,
+  canDeleteApartment: false,
 }
