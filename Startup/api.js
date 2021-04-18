@@ -16,6 +16,9 @@ app.use("/subcategory", require("../Router/subCategory.router"));
 app.use("/terms", require("../Router/termsCondition.router"));
 app.use("/about", require("../Router/aboutUs.router"));
 
+app.use("/property", require("../Router/property.router"));
+
+
 
 
 module.exports = app;
