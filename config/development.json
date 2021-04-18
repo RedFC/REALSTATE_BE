@@ -1,12 +1,12 @@
 {
-    "origin": "http://givees-staging.herokuapp.com",
+    "origin": "http://realstate.herokuapp.com",
     "Email_env": {
         "service": "gmail",
         "email": "websiteforex8@gmail.com",
         "password": "ITSol@2020"
     },
     "Default_password":{
-        "password" : "forex@2021@finance"
+        "password" : "real@2021@state"
     },
     "dbConfig":  {
         "host": "localhost",

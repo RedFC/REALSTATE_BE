@@ -6,6 +6,9 @@
         "email": "saadjawaid@gmail.com",
         "password": "89898989898989"
     },
+    "Default_password":{
+        "password" : "real@2021@state"
+    },
     "dbConfig":{
         "host": "database-1.ctbwwgahssmk.us-west-2.rds.amazonaws.com",
         "USER": "admin",
@@ -15,7 +18,7 @@
     "cloudinaryConfig": {
         "cloud_name": "",
         "api_key": "",
-        "api_secret": "0eYRtPEsTqHm2dVr8VhhZHzbRLw"
+        "api_secret": ""
     },
     "twilio" : {
         "Account_SID" : "",
