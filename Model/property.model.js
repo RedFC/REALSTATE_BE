@@ -2,7 +2,7 @@ const Joi = require("joi");
 
 function PropertyModel(sequelize, Sequelize) {
     const Property = {
-        paciNumber : {
+      paciNumber : {
         type: Sequelize.STRING
       },
       buildingNumber: {

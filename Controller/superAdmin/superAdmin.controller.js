@@ -13,7 +13,7 @@ const {
   adminPermission,
   superAdminPermission,
   UserPermission,
-  MemberPermission
+  StaffPermission
 } = require("../extras/Permission");
 const valideRole = require("../extras/validateWithRole");
 const fs = require("fs");
@@ -99,8 +99,8 @@ class SuperAdmin {
         permissionDefine = adminPermission;
       } else if (roleMember.roleName == "Super Admin") {
         permissionDefine = superAdminPermission;
-      }  else if (roleMember.roleName == "Member") {
-        permissionDefine = MemberPermission;
+      }  else if (roleMember.roleName == "Staff") {
+        permissionDefine = StaffPermission;
       }else {
         res.status(500).send({
           message: "Role Does not exist"
@@ -190,9 +190,9 @@ class SuperAdmin {
             res
           }),
         });
-      } else if (roleMember.roleName == "Member") {
+      } else if (roleMember.roleName == "Staff") {
         validatePermissionGetAccess({
-          permissionIs: getPermission.canCreateMember,
+          permissionIs: getPermission.canCreateStaff,
           req,
           res,
           _func: this.createMember({

@@ -34,12 +34,12 @@ exports.default_settings = () => {
 
             role = await db.roles.findOne({
                 where: {
-                    roleName: "Member"
+                    roleName: "Staff"
                 }
             });
             if (!role) {
                 await db.roles.create({
-                    roleName: "Member",
+                    roleName: "Staff",
                 });
             };
 
@@ -57,8 +57,7 @@ exports.default_settings = () => {
             permissionDefine = superAdminPermission;
 
             let details = {
-                firstName: "RealState",
-                lastName: "web",
+                Name: "RealState",
                 userId: null,
             };
 
@@ -84,7 +83,7 @@ exports.default_settings = () => {
                 permissionDefine.roleId = 1;
                 let foundDetails = await db.usersdetail.findOne({
                     where: {
-                        firstName: "RealState",
+                        Name: "RealState",
                         userId: newUserId
                     },
                 });

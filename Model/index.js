@@ -14,6 +14,8 @@ const { ImageData } = require("./imageData.model");
 const { exceptionModel } = require("./exception.model");
 const { PropertyModel } = require("./property.model");
 const { ApartmentModel } = require("./apartments.model");
+const { BranchModel } = require("./branch.model");
+const { UsersBranchModel } = require("./usersBranch.model");
 
 const Sequelize = require("sequelize");
 const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
@@ -46,8 +48,10 @@ db.termsCondition = Terms(sequelize, Sequelize);
 db.aboutUs = About(sequelize, Sequelize);
 db.imageData = ImageData(sequelize, Sequelize);
 db.exceptionModel = exceptionModel(sequelize, Sequelize);
+db.BranchModel = BranchModel(sequelize, Sequelize);
 db.PropertyModel = PropertyModel(sequelize, Sequelize);
 db.ApartmentModel = ApartmentModel(sequelize, Sequelize);
+db.UsersBranchModel = UsersBranchModel(sequelize, Sequelize);
 
 db.users.hasMany(db.permissions);
 db.users.hasMany(db.usersdetail);

@@ -12,10 +12,6 @@ function UsersModel(sequelize, Sequelize) {
     password: {
       type: Sequelize.STRING
     },
-    userType: {
-      type: Sequelize.STRING,
-      defaultValue: "custom"
-    },
     emailVerified: {
       type: Sequelize.BOOLEAN,
       defaultValue: false,
@@ -45,11 +41,8 @@ function validateUser(User) {
     userName: Joi.string().required(),
     email: Joi.string().required().min(10).max(255).email(),
     password: Joi.string().required().min(6).max(255),
-    firstName: Joi.string().required(),
-    lastName: Joi.string().required(),
-    dob: Joi.string(),
-    phoneNumber: Joi.string(),
-    userType: Joi.string().required()
+    Name: Joi.string().required(),
+    phoneNumber: Joi.string()
   };
   return Joi.validate(User, schema);
 }
