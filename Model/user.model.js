@@ -3,6 +3,9 @@ const jwt = require("jsonwebtoken");
 
 function UsersModel(sequelize, Sequelize) {
   const Userschema = {
+    name : {
+      type: Sequelize.STRING
+    },
     userName: {
       type: Sequelize.STRING
     },
@@ -12,9 +15,8 @@ function UsersModel(sequelize, Sequelize) {
     password: {
       type: Sequelize.STRING
     },
-    emailVerified: {
-      type: Sequelize.BOOLEAN,
-      defaultValue: false,
+    phoneNumber :{
+      type: Sequelize.STRING
     },
     otpVerified: {
       type: Sequelize.BOOLEAN,
@@ -41,25 +43,11 @@ function validateUser(User) {
     userName: Joi.string().required(),
     email: Joi.string().required().min(10).max(255).email(),
     password: Joi.string().required().min(6).max(255),
-    Name: Joi.string().required(),
-    phoneNumber: Joi.string()
+    name: Joi.string().required(),
+    phoneNumber: Joi.string().required(),
+    roleId: Joi.number().required(),
   };
   return Joi.validate(User, schema);
 }
 
 exports.validateUser = validateUser;
-
-function socialUser(User) {
-  const schema = {
-    email: Joi.string().required().min(10).max(255).email(),
-    firstName: Joi.string().required(),
-    lastName: Joi.string().required(),
-    userType: Joi.string().required(),
-    userName: Joi.string().required(),
-    dob: Joi.string().allow(''),
-    phoneNumber: Joi.string().allow(''),
-  };
-  return Joi.validate(User, schema);
-}
-
-exports.socialUser = socialUser;

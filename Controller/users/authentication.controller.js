@@ -182,8 +182,7 @@ class Authentication {
             .findOne({
                 raw: true,
                 where: {
-                    email: req.body.email,
-                    emailVerified: true
+                    email: req.body.email
                 }
             })
             .then(async (result) => {

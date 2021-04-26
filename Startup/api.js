@@ -17,6 +17,8 @@ app.use("/terms", require("../Router/termsCondition.router"));
 app.use("/about", require("../Router/aboutUs.router"));
 
 app.use("/property", require("../Router/property.router"));
+app.use("/branch", require("../Router/branch.router"));
+
 
 
 

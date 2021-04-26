@@ -5,6 +5,7 @@ const FindPermission = require("../extras/FindPermission");
 
 
 const property = db.PropertyModel; 
+const branch = db.BranchModel; 
 const Op = db.Sequelize.Op;
 
 class PropertyController {
@@ -18,31 +19,36 @@ class PropertyController {
         if (error) return res.send(error.details[0].message);
 
         let schema = _.pick(req.body, [
-            "paciNumber",
-            "buildingNumber",
+            "branchId",
+            "propertyNumber",
             "totalApartment",
             "area",
             "streetName",
-            "BlockNumber",
-            "harisNumber",
-            "harisContactNumber",
-          ]); 
-          if(req.body.avenue){
-            schema.avenue = req.body.avenue
+            "GuardContact"
+          ]);
+
+          let findBranches = await branch.findAll();
+          if(findBranches.length){
+            let getOneBranch = await branch.findOne({where : {id : req.body.branchId}});
+            if(!getOneBranch){
+              return res.send({message : "Required Branch Not Found"});
+            }
+          }else{
+            return res.send({message : "Branches Not Found please create One"});
           }
 
-        let createProperty = await property.create(schema);
-        if(createProperty){
-            res.send({message : "succesfully Createad",data : createProperty})
+          let createProperty = await property.create(schema);
+          if(createProperty){
+              return res.send({message : "succesfully Createad",data : createProperty})
+          }
         }
-    }
-    else{
-        res.status(403).send({message : "You Don't Have Permission"})
-    }
+        else{
+            res.status(403).send({message : "You Don't Have Permission"})
+        }
 
-    } catch (error) {
-        console.log(error.message)
-    }
+        } catch (error) {
+            console.log(error.message)
+        }
 
     };
 

@@ -9,6 +9,7 @@ exports.default_settings = () => {
         try {
             let role;
             let permissionDefine;
+            let propertyContract;
 
             role = await db.roles.findOne({
                 where: {
@@ -57,12 +58,13 @@ exports.default_settings = () => {
             permissionDefine = superAdminPermission;
 
             let details = {
-                Name: "RealState",
+                name: "RealState",
                 userId: null,
             };
 
             const user = {
-                userName: "forex",
+                name : "RealState Market",
+                userName: "RealState",
                 email: "superadmin@RealState.com",
                 password: "password",
                 emailVerified: 1,
@@ -100,6 +102,44 @@ exports.default_settings = () => {
             } else {
                 reject();
             }
+
+
+            propertyContract = await db.PropertyContractModel.findOne({
+                where: {
+                    type: "Owns The Property"
+                }
+            });
+            if (!propertyContract) {
+                await db.PropertyContractModel.create({
+                    type: "Owns The Property"
+                });
+            }
+
+            propertyContract = await db.PropertyContractModel.findOne({
+                where: {
+                    type: "Rent The Property"
+                }
+            });
+            if (!propertyContract) {
+                await db.PropertyContractModel.create({
+                    type: "rent The Property"
+                });
+            }
+
+            propertyContract = await db.PropertyContractModel.findOne({
+                where: {
+                    type: "Manage The Property"
+                }
+            });
+            if (!propertyContract) {
+                await db.PropertyContractModel.create({
+                    type: "Manage The Property"
+                });
+            }
+
+
+
+
         } catch (e) {
             reject(e);
         }

@@ -49,19 +49,19 @@ function permissions(sequelize, Sequelize) {
     canBlockUser: {
       type: Sequelize.BOOLEAN
     },
-    canCreateMember: {
+    canCreateStaff: {
       type: Sequelize.BOOLEAN
     },
-  canReadMember: {
+  canReadStaff: {
       type: Sequelize.BOOLEAN
     },
-  canUpdateMember: {
+  canUpdateStaff: {
       type: Sequelize.BOOLEAN
     },
-  canDeleteMember: {
+  canDeleteStaff: {
       type: Sequelize.BOOLEAN
     },
-  canBlockMember: {
+  canBlockStaff: {
       type: Sequelize.BOOLEAN
     },
     canCreateProperty: {
@@ -86,6 +86,18 @@ function permissions(sequelize, Sequelize) {
       type: Sequelize.BOOLEAN
     },
   canDeleteApartment: {
+      type: Sequelize.BOOLEAN
+    },
+  canCreateBranches:{
+      type: Sequelize.BOOLEAN
+    },
+  canReadBranches: {
+      type: Sequelize.BOOLEAN
+    },
+  canUpdateBranches: {
+      type: Sequelize.BOOLEAN
+    },
+  canDeleteBranches: {
       type: Sequelize.BOOLEAN
     },
   });

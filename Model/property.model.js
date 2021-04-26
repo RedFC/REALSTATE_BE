@@ -2,10 +2,14 @@ const Joi = require("joi");
 
 function PropertyModel(sequelize, Sequelize) {
     const Property = {
-      paciNumber : {
-        type: Sequelize.STRING
+      branchId : {
+        type: Sequelize.INTEGER,
+        references: {
+          model: "branches",
+          key: "id",
+        },
       },
-      buildingNumber: {
+      propertyNumber: {
         type: Sequelize.STRING
       },
       totalApartment : {
@@ -17,18 +21,18 @@ function PropertyModel(sequelize, Sequelize) {
       streetName: {
           type: Sequelize.STRING
       },
-      BlockNumber: {
+      image : {
         type: Sequelize.STRING
       },
-      avenue: {
-        type: Sequelize.STRING,
-        defaultValue:null
-      },
-      harisNumber: {
+      GuardContact : {
         type: Sequelize.STRING
       },
-      harisContactNumber:{
-        type: Sequelize.STRING
+      propertyContract : {
+        type: Sequelize.INTEGER,
+        references: {
+          model: "branches",
+          key: "id",
+        },
       }
     };
   
@@ -39,15 +43,12 @@ function PropertyModel(sequelize, Sequelize) {
   
   function validate(User) {
     const schema = {
-        paciNumber: Joi.number().integer().required(),
-        buildingNumber: Joi.number().integer().required(),
+        branchId: Joi.number().integer().required(),
+        propertyNumber: Joi.number().integer().required(),
         totalApartment: Joi.number().integer().required(),
         area: Joi.string().required(),
         streetName: Joi.string().required(),
-        BlockNumber: Joi.string().required(),
-        avenue: Joi.string(),
-        harisNumber: Joi.number().integer().required(),
-        harisContactNumber: Joi.number().integer().required()
+        GuardContact: Joi.string().required(),
     };
     return Joi.validate(User, schema);
   }

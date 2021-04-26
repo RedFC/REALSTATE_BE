@@ -1,47 +1,27 @@
 const db = require("../../Model");
 const _ = require("lodash");
-const {
-  validateUser: userAlias
-} = require("../../Model/user.model");
-const {
-  validatePermission
-} = require("../../Model/permissions.model");
-const randomstring = require("crypto-random-string");
-
 const bcrypt = require("bcrypt");
+const valideRole = require("../extras/validateWithRole");
+const FindPermission = require("../extras/FindPermission");
+const FindMembersRole = require("../extras/FindMemberRole");
+const config = require('config');
+
 const {
   adminPermission,
   superAdminPermission,
   UserPermission,
   StaffPermission
 } = require("../extras/Permission");
-const valideRole = require("../extras/validateWithRole");
-const fs = require("fs");
-const {
-  saveFile
-} = require("../extras/SaveFile");
-
-const FindPermission = require("../extras/FindPermission");
-const {
-  getUser,
-  updateUser
-} = require("../extras/BlockUser");
-const FindMembersRole = require("../extras/FindMemberRole");
-const UpdatePermission = require("../extras/UpdatePermission");
 const {
   validatePermissionGetAccess,
 } = require("../extras/ValidateWithPermissions");
 
-const cloudinary = require('../../config/cloudinary.config');
-
-const Emailverification = require("../extras/Emailverification");
-const sendVerificationEmail = require("../extras/EmailverificationSend");
-const config = require('config');
+const {validateUser} = require('../../Model/user.model');
 
 const Permissions = db.permissions;
 const Users = db.users;
-const UsersDetail = db.usersdetail;
-const ImageData = db.imageData;
+const UserBranch = db.UsersBranchModel
+const Branch = db.BranchModel;
 const Op = db.Sequelize.Op;
 
 class SuperAdmin {
@@ -75,9 +55,15 @@ class SuperAdmin {
   registerMember = async (value, res) => {
     try {
       let memberRegister = await Permissions.create(value);
-      return res.status(200).send({
-        message: "Account Created Successfully Credentials Has Been Emailed !"
-      });
+      if(memberRegister){
+        return res.status(200).send({
+          message: "Account Created Successfully Credentials Has Been Emailed !"
+        });
+      }else{
+        return res.status(500).send({
+          message: "Something Went Wrong",
+        });
+      }
     } catch (err) {
       return res.status(500).send({
         message: err.message || "Something Went Wrong",
@@ -91,9 +77,11 @@ class SuperAdmin {
   }) => {
     try {
       let rolevelidation = await valideRole(req.body.roleId, req.body, res);
+      if(rolevelidation.status == false) {return res.send(rolevelidation.data.details[0].message)}
+      
       let roleMember = await FindMembersRole(req.body.roleId, res, req);
       let permissionDefine;
-      if (roleMember.roleName == "User" && rolevelidation == "User") {
+      if (roleMember.roleName == "User") {
         permissionDefine = UserPermission;
       }else if (roleMember.roleName == "Admin") {
         permissionDefine = adminPermission;
@@ -107,35 +95,51 @@ class SuperAdmin {
         });
       }
 
-      let result = await Users.findOne({
+      let resultEmail = await Users.findOne({
         raw: true,
         where: {
-          [Op.or]: [{
-              email: {
-                [Op.eq]: req.body.email,
-              },
-            },
-            {
-              userName: {
-                [Op.eq]: req.body.userName,
-              },
-            },
-          ]
-        }
+              email:  req.body.email,
+            }
       });
 
-      if (result && result.email == req.body.email) return res.status(401).send({
+      let resultUserName = await Users.findOne({
+        raw: true,
+        where: {
+          userName: req.body.userName,
+            }
+      });
+
+      if (resultEmail) return res.status(401).send({
         message: "Email Already Exist!."
       });
-      if (result && result.userName == req.body.userName) return res.status(401).send({
+      if (resultUserName) return res.status(401).send({
         message: "Username cannot be same!."
       });
-      const user = _.pick(req.body, ["userName", "email"]);
-      user.password = config.get('Default_password.password')
-      user.emailVerified = 1;
+
+      if(rolevelidation.type == "Staff"){
+        let findBranches = await Branch.findAll();
+        if(findBranches.length){
+          let getOneBranch = await Branch.findOne({where : {id : req.body.branchId}});
+          if(!getOneBranch){
+            return res.send({message : "Required Branch Not Found"});
+          }
+        }else{
+          return res.send({message : "Branches Not Found please create One To Add Staff"});
+        }
+        
+      }
+      const user = _.pick(req.body, ["name","userName","phoneNumber","email","password"]);
       const salt = await bcrypt.genSalt(10);
       user.password = await bcrypt.hash(user.password, salt);
       let createuser = await Users.create(user);
+      if(createuser){
+       let AssignBranch = await UserBranch.create({branchId : req.body.branchId , userId : createuser.id});
+        if(AssignBranch){
+          permissionDefine.userId = createuser.id;
+          permissionDefine.roleId = req.body.roleId;
+          this.registerMember(permissionDefine, res);
+        }
+      }
       // if (createuser) {
       //   sendVerificationEmail(
       //     req,
@@ -145,10 +149,6 @@ class SuperAdmin {
       //     createuser.dataValues.userName
       //   );
       // }
-      permissionDefine.userId = createuser.dataValues.id;
-      permissionDefine.roleId = req.body.roleId;
-      this.registerMember(permissionDefine, res);
-
     } catch (err) {
       return res.status(500).send({
         message: err.message || "Some error occurred while creating the Role.",

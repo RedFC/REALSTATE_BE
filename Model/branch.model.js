@@ -4,9 +4,6 @@ function BranchModel(sequelize, Sequelize) {
     const Branch = {
       Name: {
           type: Sequelize.STRING
-      },
-      Address:{
-        type : Sequelize.STRING,
       }
     };
   
@@ -18,8 +15,7 @@ function BranchModel(sequelize, Sequelize) {
 
   function validate(request) {
     const schema = {
-        Name: Joi.string().required(),
-        Address: Joi.string().required(),
+        Name: Joi.string().required()
     };
     return Joi.validate(request, schema);
   }

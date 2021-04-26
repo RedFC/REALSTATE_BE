@@ -16,6 +16,7 @@ const { PropertyModel } = require("./property.model");
 const { ApartmentModel } = require("./apartments.model");
 const { BranchModel } = require("./branch.model");
 const { UsersBranchModel } = require("./usersBranch.model");
+const { PropertyContractModel } = require("./propertyContract.model");
 
 const Sequelize = require("sequelize");
 const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
@@ -52,6 +53,7 @@ db.BranchModel = BranchModel(sequelize, Sequelize);
 db.PropertyModel = PropertyModel(sequelize, Sequelize);
 db.ApartmentModel = ApartmentModel(sequelize, Sequelize);
 db.UsersBranchModel = UsersBranchModel(sequelize, Sequelize);
+db.PropertyContractModel = PropertyContractModel(sequelize, Sequelize);
 
 db.users.hasMany(db.permissions);
 db.users.hasMany(db.usersdetail);
