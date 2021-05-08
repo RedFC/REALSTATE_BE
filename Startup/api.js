@@ -19,6 +19,8 @@ app.use("/about", require("../Router/aboutUs.router"));
 app.use("/property", require("../Router/property.router"));
 app.use("/branch", require("../Router/branch.router"));
 
+app.use("/tenant", require("../Router/tenant.router"));
+
 
 
 

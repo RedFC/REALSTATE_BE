@@ -8,10 +8,12 @@ let Apartment = new ApartmentController();
 
 
 router.post("/create", Token.isAuthenticated(), Property.create);
+router.get("/getAll", Token.isAuthenticated(), Property.getAllProperty);
 
 
 // Apartment Routing
 router.post("/apartment/create", Token.isAuthenticated(), Apartment.create);
+router.get("/apartment/getALl", Token.isAuthenticated(), Apartment.getAllAppartments);
 
 
 module.exports = router;

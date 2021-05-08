@@ -36,6 +36,23 @@ class BranchController {
           });
     }
 
+  };
+
+  getAllBranch = async (req,res) => {
+
+    try {
+      
+      let getAll = await branch.findAll();
+      if(getAll.length){
+        res.send({message : "success",data : getAll})
+      }else{
+        res.send({data : []})
+      }
+
+    } catch (error) {
+      return res.status(500).send({error : error.message})
+    }
+
   }
 
 }

@@ -6,6 +6,7 @@ let branch = new BranchController();
 
 
 router.post("/create", Token.isAuthenticated(), branch.create);
+router.get("/getAll", Token.isAuthenticated(), branch.getAllBranch);
 
 
 

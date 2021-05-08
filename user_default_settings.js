@@ -10,6 +10,7 @@ exports.default_settings = () => {
             let role;
             let permissionDefine;
             let propertyContract;
+            let rentType;
 
             role = await db.roles.findOne({
                 where: {
@@ -136,6 +137,76 @@ exports.default_settings = () => {
                     type: "Manage The Property"
                 });
             }
+
+            rentType = await db.RentModel.findOne({
+                where : {
+                    typeName : "Daily"
+                }
+            });
+            if (!rentType) {
+                await db.RentModel.create({
+                    typeName: "Daily"
+                });
+            }
+
+
+            rentType = await db.RentModel.findOne({
+                where : {
+                    typeName : "Monthly"
+                }
+            });
+            if (!rentType) {
+                await db.RentModel.create({
+                    typeName: "Monthly"
+                });
+            }
+
+
+            rentType = await db.RentModel.findOne({
+                where : {
+                    typeName : "every three month"
+                }
+            });
+            if (!rentType) {
+                await db.RentModel.create({
+                    typeName: "every three month"
+                });
+            }
+
+            rentType = await db.RentModel.findOne({
+                where : {
+                    typeName : "every four month"
+                }
+            });
+            if (!rentType) {
+                await db.RentModel.create({
+                    typeName: "every four month"
+                });
+            }
+
+            rentType = await db.RentModel.findOne({
+                where : {
+                    typeName : "half an year"
+                }
+            });
+            if (!rentType) {
+                await db.RentModel.create({
+                    typeName: "half an year"
+                });
+            }
+
+            rentType = await db.RentModel.findOne({
+                where : {
+                    typeName : "yearly Rent"
+                }
+            });
+            if (!rentType) {
+                await db.RentModel.create({
+                    typeName: "yearly Rent"
+                });
+            }
+
+
 
 
 

@@ -52,6 +52,24 @@ class PropertyController {
 
     };
 
+
+    getAllProperty = async (req,res) => {
+
+      try {
+        let getAll = await property.findAll({include : [{model : branch}]});
+        if(getAll.length) {
+          return res.send({message : "Success" , data : getAll})
+        }else{
+          return res.send({message : "Success" , data : []})
+        }
+      } catch (error) {
+        return res.status(500).send({error : error.message})
+      }
+
+    };
+
+
+
 }
 
 module.exports = PropertyController;

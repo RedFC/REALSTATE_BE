@@ -17,6 +17,8 @@ const { ApartmentModel } = require("./apartments.model");
 const { BranchModel } = require("./branch.model");
 const { UsersBranchModel } = require("./usersBranch.model");
 const { PropertyContractModel } = require("./propertyContract.model");
+const { RentModel } = require("./rentTypes.model");
+const { TenantModel } = require("./tenant.model");
 
 const Sequelize = require("sequelize");
 const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
@@ -54,6 +56,9 @@ db.PropertyModel = PropertyModel(sequelize, Sequelize);
 db.ApartmentModel = ApartmentModel(sequelize, Sequelize);
 db.UsersBranchModel = UsersBranchModel(sequelize, Sequelize);
 db.PropertyContractModel = PropertyContractModel(sequelize, Sequelize);
+db.RentModel = RentModel(sequelize, Sequelize);
+db.TenantModel = TenantModel(sequelize, Sequelize);
+
 
 db.users.hasMany(db.permissions);
 db.users.hasMany(db.usersdetail);
@@ -61,7 +66,11 @@ db.users.hasMany(db.usersdetail);
 db.users.hasMany(db.permissions);
 db.users.hasMany(db.usersdetail);
 
-db.category.hasMany(db.SubCategory);
-db.SubCategory.belongsTo(db.category)
+db.BranchModel.hasMany(db.PropertyModel)
+db.PropertyModel.belongsTo(db.BranchModel)
+
+db.PropertyModel.hasMany(db.ApartmentModel)
+db.ApartmentModel.belongsTo(db.PropertyModel)
+
 
 module.exports = db;

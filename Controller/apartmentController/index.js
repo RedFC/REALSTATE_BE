@@ -2,9 +2,11 @@ const db = require("../../Model");
 const _ = require("lodash");
 const { validate } = require("../../Model/apartments.model");
 
-const apartment = db.ApartmentModel; 
+const apartment = db.ApartmentModel;
+const proprty = db.PropertyModel
 const Op = db.Sequelize.Op;
 const FindPermission = require("../extras/FindPermission");
+const { BranchModel } = require("../../Model");
 
 class ApartMentController {
 
@@ -17,10 +19,15 @@ class ApartMentController {
         if (error) return res.send(error.details[0].message);
 
         let schema = _.pick(req.body, [
-            "paciNumber",
+            "propertyNumber",
             "floor",
             "flatNumber",
-            "monthlyRent",
+            "rentTypeId",
+            "numberOfRooms",
+            "numberOfBathrooms",
+            "numberOfHalls",
+            "numberOfKitchens",
+            "rentAmount",
             "propertyId"
           ]);
 
@@ -38,6 +45,23 @@ class ApartMentController {
     }
 
     };
+
+    getAllAppartments = async (req,res) => {
+
+        try {
+          let getAll = await apartment.findAll({include : [{model : proprty , include : [{
+              model : BranchModel
+          }]}]});
+          if(getAll.length) {
+            return res.send({message : "Success" , data : getAll})
+          }else{
+            return res.send({message : "Success" , data : []})
+          }
+        } catch (error) {
+          return res.status(500).send({error : error.message})
+        }
+  
+      };
 
 }
 
