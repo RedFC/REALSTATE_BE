@@ -16,9 +16,9 @@
         "DB": "realstate_backend"
     },
     "cloudinaryConfig": {
-        "cloud_name": "",
-        "api_key": "",
-        "api_secret": ""
+        "cloud_name": "djppuio0h",
+        "api_key": "662287172819724",
+        "api_secret": "6BXI21w9ws7vHiUg_m5pyaK2j7c"
     },
     "twilio" : {
         "Account_SID" : "",
