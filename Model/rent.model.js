@@ -23,6 +23,16 @@ function RentContractModel(sequelize, Sequelize) {
           key: "id",
         },
       },
+      paymentType:{
+        type: Sequelize.INTEGER,
+        references: {
+          model: "renttypes",
+          key: "id",
+        },
+      },
+      amount:{
+        type: Sequelize.STRING
+      }
       
     };
   

@@ -34,7 +34,7 @@ app.set("view engine", "ejs");
 const db = require("./Model");
 db.sequelize
   .sync({
-    force: false, // To create table if exists , so make it false
+    force: true, // To create table if exists , so make it false
   })
   .then(async () => {
 

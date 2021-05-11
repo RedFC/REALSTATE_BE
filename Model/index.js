@@ -19,6 +19,8 @@ const { UsersBranchModel } = require("./usersBranch.model");
 const { PropertyContractModel } = require("./propertyContract.model");
 const { RentModel } = require("./rentTypes.model");
 const { TenantModel } = require("./tenant.model");
+const { RentContractModel } = require("./rent.model");
+const { PaymentVoucherModel,ReceiptVoucherModel } = require("./voucher.model");
 
 const Sequelize = require("sequelize");
 const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
@@ -58,6 +60,9 @@ db.UsersBranchModel = UsersBranchModel(sequelize, Sequelize);
 db.PropertyContractModel = PropertyContractModel(sequelize, Sequelize);
 db.RentModel = RentModel(sequelize, Sequelize);
 db.TenantModel = TenantModel(sequelize, Sequelize);
+db.RentContractModel = RentContractModel(sequelize, Sequelize);
+db.PaymentVoucherModel = PaymentVoucherModel(sequelize, Sequelize);
+db.ReceiptVoucherModel = ReceiptVoucherModel(sequelize, Sequelize);
 
 
 db.users.hasMany(db.permissions);

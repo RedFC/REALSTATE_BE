@@ -19,6 +19,15 @@ module.exports = async function (roleId, reqBody, res) {
       } else {
         return {status : true,type : "Staff"}
       }
+    }
+    else if (role.roleName == "Admin") {
+      return {status : true,type : "Admin"}
+    } 
+    else if (role.roleName == "User") {
+      return {status : true,type : "User"}
+    }
+    else if (role.roleName == "Super Admin") {
+      return {status : true,type : "Super Admin"}
     } 
   } catch (err) {
     winston.error(err);

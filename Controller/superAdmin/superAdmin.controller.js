@@ -26,8 +26,6 @@ const Op = db.Sequelize.Op;
 
 class SuperAdmin {
 
-
-
   filterMemberFromRole = async (userId) => {
     try {
       let members = await Users.findAll({
@@ -78,7 +76,7 @@ class SuperAdmin {
     try {
       let rolevelidation = await valideRole(req.body.roleId, req.body, res);
       if(rolevelidation.status == false) {return res.send(rolevelidation.data.details[0].message)}
-      
+
       let roleMember = await FindMembersRole(req.body.roleId, res, req);
       let permissionDefine;
       if (roleMember.roleName == "User") {
@@ -133,12 +131,12 @@ class SuperAdmin {
       user.password = await bcrypt.hash(user.password, salt);
       let createuser = await Users.create(user);
       if(createuser){
-       let AssignBranch = await UserBranch.create({branchId : req.body.branchId , userId : createuser.id});
-        if(AssignBranch){
-          permissionDefine.userId = createuser.id;
-          permissionDefine.roleId = req.body.roleId;
-          this.registerMember(permissionDefine, res);
+        if(rolevelidation.type == "Staff"){
+          let AssignBranch = await UserBranch.create({branchId : req.body.branchId , userId : createuser.id});
         }
+        permissionDefine.userId = createuser.id;
+        permissionDefine.roleId = req.body.roleId;
+        this.registerMember(permissionDefine, res);
       }
       // if (createuser) {
       //   sendVerificationEmail(
@@ -150,9 +148,10 @@ class SuperAdmin {
       //   );
       // }
     } catch (err) {
-      return res.status(500).send({
-        message: err.message || "Some error occurred while creating the Role.",
-      });
+      console.log(err);
+      // return res.status(500).send({
+      //   message: err.message || "Some error occurred while creating the Role.",
+      // });
     }
   };
 
@@ -206,9 +205,10 @@ class SuperAdmin {
         });
       }
     } catch (err) {
-      return res.status(500).send({
-        message: err.message || "Something Went Wrong",
-      });
+      console.log(err);
+      // return res.status(500).send({
+      //   message: err.message || "Something Went Wrong",
+      // });
     }
   };
 }

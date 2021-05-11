@@ -30,9 +30,18 @@ function PropertyModel(sequelize, Sequelize) {
       propertyContract : {
         type: Sequelize.INTEGER,
         references: {
-          model: "branches",
+          model: "propertycontracts",
           key: "id",
         },
+      },
+      description : {
+        type: Sequelize.TEXT
+      },
+      longitude : {
+        type: Sequelize.STRING
+      },
+      latitude : {
+        type: Sequelize.STRING
       }
     };
   
@@ -49,6 +58,9 @@ function PropertyModel(sequelize, Sequelize) {
         area: Joi.string().required(),
         streetName: Joi.string().required(),
         GuardContact: Joi.string().required(),
+        description : Joi.string().required(),
+        longitude : Joi.string().required(),
+        latitude : Joi.string().required()
     };
     return Joi.validate(User, schema);
   }

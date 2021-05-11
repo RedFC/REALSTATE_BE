@@ -28,7 +28,10 @@ class PropertyController {
             "totalApartment",
             "area",
             "streetName",
-            "GuardContact"
+            "GuardContact",
+            'description',
+            'longitude',
+            'latitude'
           ]);
 
           let findBranches = await branch.findAll();
