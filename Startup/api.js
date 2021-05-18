@@ -16,13 +16,28 @@ app.use("/subcategory", require("../Router/subCategory.router"));
 app.use("/terms", require("../Router/termsCondition.router"));
 app.use("/about", require("../Router/aboutUs.router"));
 
+<<<<<<< Updated upstream
+=======
+<<<<<<< Updated upstream
+=======
+>>>>>>> Stashed changes
 app.use("/property", require("../Router/property.router"));
 app.use("/branch", require("../Router/branch.router"));
 
 app.use("/tenant", require("../Router/tenant.router"));
 
+<<<<<<< Updated upstream
 
 
+=======
+app.use("/voucher", require("../Router/voucher.router"));
+
+app.use("/contract", require("../Router/rentContract.router"));
+
+
+
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
 
 
 module.exports = app;

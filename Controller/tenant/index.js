@@ -14,7 +14,11 @@ class TenantController {
         let {error} = validate(req.body);
         if(error) return res.send({message : error.details[0].message});
 
+<<<<<<< Updated upstream
         let schema = _.pick(req.body,['name','number','idNumber','nationality'])
+=======
+        let schema = _.pick(req.body,['name','number','idNumber','branchId','nationality'])
+>>>>>>> Stashed changes
         let create = await tenant.create(schema)
     
         if(create) {
