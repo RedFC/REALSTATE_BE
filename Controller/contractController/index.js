@@ -84,6 +84,81 @@ class rentContractController {
 
     };
 
+    updateContract = async (req,res) => {
+
+      try{
+      let getPermission = await FindPermission(req.user.id);
+        if(getPermission.canCreateProperty){
+
+        let schema = _.pick(req.body, [
+            "propertyId",
+            "appartmentId",
+            "tenantId",
+            "renttype",
+            "amount"
+          ]);
+
+          
+          let rentContractget = await rentContract.findOne({where : {id : req.params.id}});
+          if(!rentContractget){
+            return res.send({message : "Contract Not Found"});
+          }
+
+          let rentcontract = await rentContract.update(schema,{where:{id : req.params.id}});
+            if(rentcontract[0]){
+              return res.send({message : "Rent Contract updated"})
+            }        
+        }
+        else{
+            res.status(403).send({message : "You Don't Have Permission"})
+        }
+
+        } catch (error) {
+            console.log(error.message)
+        }
+
+    }
+
+    getAllContract = async (req,res) => {
+
+      try {
+        
+        let getAllContracts = await rentContract.findAll({
+          include : [{model : tenant},{model : appartment},{model : property}]
+        });
+        if(getAllContracts.length){
+          res.send({message : "success",data : getAllContracts})
+        }else {
+          res.send({message : "success",data:[]})
+        }
+
+      } catch (error) {
+        res.send({message : error.message})
+      }
+
+
+    }
+
+    getspecificContract = async (req,res) => {
+
+      try {
+        
+        let getAllContracts = await rentContract.findOne({where : {id : req.params.id},
+          include : [{model : tenant},{model : appartment},{model : property}]
+        });
+        if(getAllContracts){
+          res.send({message : "success",data : getAllContracts})
+        }else {
+          res.send({message : "success",data:[]})
+        }
+
+      } catch (error) {
+        res.send({message : error.message})
+      }
+
+
+    }
+
 }
 
 module.exports = rentContractController;

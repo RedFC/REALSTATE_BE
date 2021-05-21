@@ -29,6 +29,28 @@ class TenantController {
 
     };
 
+    update = async (req, res) => {
+      try {
+  
+  
+          let schema = _.pick(req.body,['name','number','idNumber','branchId','nationality'])
+          let getOne = await tenant.findOne({where :{ id : req.params.id}});
+          if(!getOne){
+            return res.send({message : "tenant not found"});
+          }
+          let create = await tenant.update(schema,{where : {id : req.params.id}})
+          if(create[0]) {
+              return res.send({message : "Updated"});
+          }
+          else {
+              return res.status(409).send({message : "Error While updating Tenant"});
+          }
+      } catch (error) {
+          return res.status(500).send({error : error.message})
+      }
+  
+      };
+
     getAllTenant = async (req,res) => {
 
         try {
@@ -42,6 +64,19 @@ class TenantController {
             return res.status(500).send({error : error.message})
           }
 
+    }
+
+    getOneTenant = async (req,res) => {
+      try {
+        let getAll = await tenant.findOne({where : {id : req.params.id}});
+        if(getAll) {
+          return res.send({message : "Success" , data : getAll})
+        }else{
+          return res.send({message : "Success" , data : []})
+        }
+      } catch (error) {
+        return res.status(500).send({error : error.message})
+      }
     }
 
 }
