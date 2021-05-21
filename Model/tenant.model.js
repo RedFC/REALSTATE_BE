@@ -11,8 +11,6 @@ function TenantModel(sequelize, Sequelize) {
       idNumber: {
         type: Sequelize.STRING
       },
-<<<<<<< Updated upstream
-=======
       branchId : {
         type: Sequelize.INTEGER,
         references: {
@@ -20,7 +18,6 @@ function TenantModel(sequelize, Sequelize) {
           key: "id",
         },
       },
->>>>>>> Stashed changes
       nationality: {
         type: Sequelize.STRING
       }
@@ -38,10 +35,7 @@ function TenantModel(sequelize, Sequelize) {
       number: Joi.string().required(),
       idNumber: Joi.string().required(),
       nationality: Joi.string().required(),
-<<<<<<< Updated upstream
-=======
       branchId: Joi.string().required()
->>>>>>> Stashed changes
     };
     return Joi.validate(User, schema);
   }

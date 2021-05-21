@@ -1,9 +1,5 @@
 const db = require("../../Model");
 const _ = require("lodash");
-<<<<<<< Updated upstream
-const { validate } = require("../../Model/property.model");
-=======
->>>>>>> Stashed changes
 const FindPermission = require("../extras/FindPermission");
 
 const rentContract = db.RentContractModel; 
@@ -21,17 +17,9 @@ class rentContractController {
     try {
         let getPermission = await FindPermission(req.user.id);
         if(getPermission.canCreateProperty){
-<<<<<<< Updated upstream
-        let {error} = validate(req.body);
-        if (error) return res.send(error.details[0].message);
-
-        let schema = _.pick(req.body, [
-            "propertId",
-=======
 
         let schema = _.pick(req.body, [
             "propertyId",
->>>>>>> Stashed changes
             "appartmentId",
             "tenantId",
             "renttype",
@@ -40,13 +28,8 @@ class rentContractController {
 
           let properties = await property.findAll();
           if(properties.length){
-<<<<<<< Updated upstream
-            let property = await branch.findOne({where : {id : req.body.propertId}});
-            if(!property){
-=======
             let propertys = await property.findOne({where : {id : req.body.propertyId}});
             if(!propertys){
->>>>>>> Stashed changes
               return res.send({message : "Required property Not Found"});
             }
           }else{

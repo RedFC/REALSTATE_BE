@@ -109,8 +109,6 @@ class PropertyController {
 
     };
 
-<<<<<<< Updated upstream
-=======
     getProperty = async (req,res) => {
 
       try {
@@ -212,7 +210,6 @@ class PropertyController {
 
     }
 
->>>>>>> Stashed changes
 
 
 }
