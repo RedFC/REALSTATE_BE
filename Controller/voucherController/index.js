@@ -63,5 +63,35 @@ class VoucherController {
     }
 
     
+    deleteReciptVoucher = async (req, res) => {
+
+        try {
+          
+          let deleteReciptVoucher = await receiptVoucher.update({isDeleted : 1},{where : {id : req.params.id}});
+          if(deleteReciptVoucher[0]){
+            res.send({message : "Recipt Voucher Deleted Succesfully"});
+          }
+  
+        } catch (error) {
+          res.status(500).send({error : error.message})
+        }
+  
+      }
+
+      deletePaymentVoucher = async (req, res) => {
+
+        try {
+          
+          let deletePaymentVoucher = await paymentVoucher.update({isDeleted : 1},{where : {id : req.params.id}});
+          if(deletePaymentVoucher[0]){
+            res.send({message : "Payment Voucher Deleted Succesfully"});
+          }
+  
+        } catch (error) {
+          res.status(500).send({error : error.message})
+        }
+  
+      }
+
 }
 module.exports = VoucherController;

@@ -39,6 +39,10 @@ function ApartmentModel(sequelize, Sequelize) {
             model: "properties",
             key: 'id'
         }
+      },
+      isDeleted : {
+        type : Sequelize.BOOLEAN,
+        defaultValue : 0
       }
     };
   

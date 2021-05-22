@@ -42,6 +42,10 @@ function PropertyModel(sequelize, Sequelize) {
       },
       latitude : {
         type: Sequelize.STRING
+      },
+      isDeleted : {
+        type : Sequelize.BOOLEAN,
+        defaultValue : 0
       }
     };
   

@@ -8,6 +8,7 @@ router.post("/create", Token.isAuthenticated(), tenant.create);
 router.get("/getAll", Token.isAuthenticated(), tenant.getAllTenant);
 router.put("/update/:id", Token.isAuthenticated(), tenant.update);
 router.get("/getAll/:id", Token.isAuthenticated(), tenant.getOneTenant);
+router.delete("/delete/:id", Token.isAuthenticated(), tenant.deleteTenant);
 
 
 

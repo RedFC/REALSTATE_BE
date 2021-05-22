@@ -159,6 +159,21 @@ class rentContractController {
 
     }
 
+    deleteContract = async (req, res) => {
+
+      try {
+        
+        let deleteContract = await rentContract.update({isDeleted : 1},{where : {id : req.params.id}});
+        if(deleteContract[0]){
+          res.send({message : "Contract Deleted Succesfully"});
+        }
+
+      } catch (error) {
+        res.status(500).send({error : error.message})
+      }
+
+    }
+
 }
 
 module.exports = rentContractController;

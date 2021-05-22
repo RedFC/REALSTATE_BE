@@ -210,7 +210,20 @@ class PropertyController {
 
     }
 
+    deleteProperty = async (req, res) => {
 
+      try {
+        
+        let deleteProperty = await property.update({isDeleted : 1},{where : {id : req.params.id}});
+        if(deleteProperty[0]){
+          res.send({message : "Property Deleted Succesfully"});
+        }
+
+      } catch (error) {
+        res.status(500).send({error : error.message})
+      }
+
+    }
 
 }
 

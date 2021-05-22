@@ -79,6 +79,21 @@ class TenantController {
       }
     }
 
+    deleteTenant = async (req, res) => {
+
+      try {
+        
+        let deleteTenant = await tenant.update({isDeleted : 1},{where : {id : req.params.id}});
+        if(deleteTenant[0]){
+          res.send({message : "Tenant Deleted Succesfully"});
+        }
+
+      } catch (error) {
+        res.status(500).send({error : error.message})
+      }
+
+    }
+
 }
 
 module.exports = TenantController;

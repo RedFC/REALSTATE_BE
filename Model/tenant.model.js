@@ -20,6 +20,10 @@ function TenantModel(sequelize, Sequelize) {
       },
       nationality: {
         type: Sequelize.STRING
+      },
+      isDeleted : {
+        type : Sequelize.BOOLEAN,
+        defaultValue : 0
       }
     };
   

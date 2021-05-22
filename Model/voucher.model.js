@@ -16,6 +16,10 @@ function PaymentVoucherModel(sequelize, Sequelize) {
       },
       reason :{
         type: Sequelize.TEXT
+      },
+      isDeleted : {
+        type : Sequelize.BOOLEAN,
+        defaultValue : 0
       }
       
     };
@@ -42,6 +46,10 @@ function PaymentVoucherModel(sequelize, Sequelize) {
       },
       reason :{
         type: Sequelize.TEXT
+      },
+      isDeleted : {
+        type : Sequelize.BOOLEAN,
+        defaultValue : 0
       }
       
     };

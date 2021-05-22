@@ -32,6 +32,10 @@ function RentContractModel(sequelize, Sequelize) {
       },
       amount:{
         type: Sequelize.STRING
+      },
+      isDeleted : {
+        type : Sequelize.BOOLEAN,
+        defaultValue : 0
       }
       
     };

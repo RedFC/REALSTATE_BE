@@ -4,6 +4,10 @@ function RentModel(sequelize, Sequelize) {
     const renttype = {
       typeName: {
         type: Sequelize.STRING
+      },
+      isDeleted : {
+        type : Sequelize.BOOLEAN,
+        defaultValue : 0
       }
     };
   

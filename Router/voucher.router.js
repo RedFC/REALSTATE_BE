@@ -9,6 +9,10 @@ router.post("/create_payment", Token.isAuthenticated(), Voucher.createPaymentVou
 
 router.get("/thesafe", Token.isAuthenticated(), Voucher.thesafe);
 
+router.delete("/deletereciptvoucher/:id", Token.isAuthenticated(), Voucher.deleteReciptVoucher);
+
+router.delete("/deletepaymentvoucher/:id", Token.isAuthenticated(), Voucher.deletePaymentVoucher);
+
 
 
 

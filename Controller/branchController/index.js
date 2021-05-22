@@ -55,6 +55,21 @@ class BranchController {
 
   }
 
+  deleteBranch = async (req, res) => {
+
+    try {
+      
+      let deletebranch = await branch.update({isDeleted : 1},{where : {id : req.params.id}});
+      if(deletebranch[0]){
+        res.send({message : "Branch Deleted Succesfully"});
+      }
+
+    } catch (error) {
+      res.status(500).send({error : error.message})
+    }
+
+  }
+
 }
 
 module.exports = BranchController;

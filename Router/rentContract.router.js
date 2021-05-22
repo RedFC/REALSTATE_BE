@@ -5,6 +5,7 @@ var router = require("express").Router();
 let rentContract = new rentContractController();
 
 router.post("/createContract", Token.isAuthenticated(), rentContract.create);
+router.delete("/delete:/id", Token.isAuthenticated(), rentContract.deleteContract);
 
 
 module.exports = router;

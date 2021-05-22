@@ -5,6 +5,10 @@ function PropertyContractModel(sequelize, Sequelize) {
       type : {
         type: Sequelize.STRING,
       },
+      isDeleted : {
+        type : Sequelize.BOOLEAN,
+        defaultValue : 0
+      }
       
     };
   

@@ -4,6 +4,10 @@ function BranchModel(sequelize, Sequelize) {
     const Branch = {
       Name: {
           type: Sequelize.STRING
+      },
+      isDeleted : {
+        type : Sequelize.BOOLEAN,
+        defaultValue : 0
       }
     };
   
